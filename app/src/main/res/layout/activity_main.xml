@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/finderbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Charging Station Finder"
+        app:layout_constraintBottom_toTopOf="@+id/routebtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/soccerbtn" />
+
+    <Button
+        android:id="@+id/soccerbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soccer Games App"
+        app:layout_constraintBottom_toTopOf="@+id/finderbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/moviebtn" />
+
+    <Button
+        android:id="@+id/routebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OcTranspo Bus Route App"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finderbtn" />
+
+    <Button
+        android:id="@+id/moviebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Movie App"
+        app:layout_constraintBottom_toTopOf="@+id/soccerbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
