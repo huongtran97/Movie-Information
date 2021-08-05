@@ -8,11 +8,16 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Header goes here"/>
+        android:background="#9498AA"
+        android:fontFamily="casual"
+        android:text="@string/content_head_popup"
+        android:textColor="#F8E8B7"
+        android:textSize="16sp"
+        android:textStyle="bold|italic" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/history_icon"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 </LinearLayout>

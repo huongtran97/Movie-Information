@@ -10,13 +10,16 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -54,7 +57,47 @@ public class FindMovie extends AppCompatActivity {
     Bitmap image = null;
     List<MovieDetails> movieDetailsList;
     TextView name;
+    String movieName;
+    String nameLogin;
 
+    /**
+     *Item popup menu
+     * @param item
+     * @return
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        TextView movie = findViewById(R.id.movie_Name);
+        TextView rating = findViewById(R.id.movie_ValueRating);
+        TextView actor = findViewById(R.id.movie_Actor);
+        TextView yr = findViewById(R.id.movie_Year);
+        TextView rt = findViewById(R.id.movie_Runtime);
+        TextView pl = findViewById(R.id.movie_Plot);
+        ImageView im = findViewById(R.id.movie_Image);
+
+
+        switch (item.getItemId()) {
+            case R.id.save:
+
+
+
+                break;
+            case 1:
+                String movieName = item.getTitle().toString();
+                runSearchBtn(movieName);
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     *create menu options
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -62,14 +105,18 @@ public class FindMovie extends AppCompatActivity {
         return true;
     }
 
+    /**
+     *get data user by share preferences
+     * @param savedInstanceState
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_layout);
 
         name = findViewById(R.id.nameLogin);
-        EditText movieType =findViewById(R.id.movie_search);
+        EditText movieType = findViewById(R.id.movie_search);
         ImageButton searchMovieBtn = findViewById(R.id.searchBtn);
 
         //SharedPreferences to get data type from login page
@@ -84,11 +131,11 @@ public class FindMovie extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolbar, R.string.open,R.string.close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolbar, R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.popout_menu);
-        navigationView.setNavigationItemSelectedListener((item) ->{
+        navigationView.setNavigationItemSelectedListener((item) -> {
 
             onOptionsItemSelected(item);
             drawer.closeDrawer(GravityCompat.START);
@@ -97,12 +144,27 @@ public class FindMovie extends AppCompatActivity {
         });
 
 
+        searchMovieBtn.setOnClickListener((click) -> {
 
-        searchMovieBtn.setOnClickListener((clk) -> {
+            movieName = movieType.getText().toString();
+            myToolbar.getMenu().add(1,1,10,movieName).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            runSearchBtn(movieName);
 
-            String movieName = movieType.getText().toString();
+        } );
 
-            Executor newThread = Executors.newSingleThreadExecutor();
+    }
+
+
+    /**
+     *get json data anf display on screen by click
+     * @param movieName
+     */
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void runSearchBtn(String movieName) {
+
+
+        Executor newThread = Executors.newSingleThreadExecutor();
             newThread.execute(() -> {
 
                 try{
@@ -140,10 +202,10 @@ public class FindMovie extends AppCompatActivity {
                         int responseCode = connection.getResponseCode();
 
 
-                        //check image
-                        if (responseCode != 200) {
+                        if (responseCode == 200) {
                             image = BitmapFactory.decodeStream(connection.getInputStream());
-                            image.compress(Bitmap.CompressFormat.JPEG,100, openFileOutput(poster, Activity.MODE_PRIVATE));
+                            String filename = movie_title + poster.substring(poster.length()-4);
+                            image.compress(Bitmap.CompressFormat.JPEG,100, openFileOutput(filename, Activity.MODE_PRIVATE));
 
                         }
                     }
@@ -152,7 +214,7 @@ public class FindMovie extends AppCompatActivity {
 
 
                         TextView  movie = findViewById(R.id.movie_Name);
-                        movie.setText("Movie: "+ movie_title);
+                        movie.setText(movie_title);
                         movie.setVisibility(View.VISIBLE);
 
                         TextView rating = findViewById(R.id.movie_ValueRating);
@@ -185,8 +247,17 @@ public class FindMovie extends AppCompatActivity {
                     ioException.printStackTrace();
                 }
             });
-        });
+
+            if(movieName.equals("")){
+                Toast.makeText(FindMovie.this, nameLogin + ", you still have not told me the name of the movie!" ,
+                        Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 
-}
+
+
+
+
+

@@ -18,5 +18,9 @@
     <string name="open" />
     <string name="close" />
 
+    <!--Popup item-->
+    <string name="content_head_popup">Yêu thích</string>
+
+
 
 </resources>

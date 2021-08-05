@@ -14,7 +14,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MovieLogin extends AppCompatActivity {
-
+    /**
+     *
+     */
 
         private static final String TAG = "MovieLogin";
 
@@ -24,6 +26,10 @@ public class MovieLogin extends AppCompatActivity {
         private EditText mName, mPassword;
         private Button btnLogin;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -36,7 +42,9 @@ public class MovieLogin extends AppCompatActivity {
             mEditor = mPreferences.edit();
 
             checkSharedPreferences();
-
+            /**
+             *
+             */
             btnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -55,10 +63,8 @@ public class MovieLogin extends AppCompatActivity {
 
                         }
 
-                    } else if(!CheckPassword(passWord)) {
-                        //do nothing
-
-                    } else {
+                    }
+                    if(CheckPassword(passWord)) {
                         AlertDialog accept = new AlertDialog.Builder(MovieLogin.this)
                                 .setTitle("Yooo!!!!!")
                                 .setMessage("Good movies are waiting for you, let's enjoy them!!")
@@ -84,6 +90,11 @@ public class MovieLogin extends AppCompatActivity {
 
         }
 
+    /**
+     *
+     * @param passWord
+     * @return
+     */
     private boolean CheckPassword(String passWord) {
         boolean foundUpperCase, foundLowerCase, foundNumber, foundSpecial;
         foundUpperCase = foundLowerCase = foundNumber = foundSpecial = false;
@@ -117,6 +128,11 @@ public class MovieLogin extends AppCompatActivity {
             return true;//only get here if they're all true
     }
 
+    /**
+     *
+     * @param c
+     * @return
+     */
     private boolean isSpecialCharacter(char c) {
         //return true if c is one of: #$%^&*!@?
         //return false otherwise
@@ -136,7 +152,9 @@ public class MovieLogin extends AppCompatActivity {
         }
     }
 
-
+    /**
+     *
+     */
     private void checkSharedPreferences() {
         String name = mPreferences.getString(getString(R.string.name), "");
         String password = mPreferences.getString(getString(R.string.password), "");
