@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bài tập cuối khóa</string>
+
+    <!--Login page-->
+    <string name="content">Bạn là ai?</string>
+    <string name="user">Tên:</string>
+    <string name="user_type">Bạn tên gì?</string>
+    <string name="user_password">Mật khẩu:</string>
+    <string name="user_password_type">Nhập mật khẩu của bạn.</string>
+    <string name="login">ĐĂNG NHẬP</string>
+
+    <!--Find movie page-->
+    <string name="welcome">Chào mừng bạn trở lại với FindMovie !!!</string>
+    <string name="content_findmovie_page">Bạn đang tìm kiếm phim gì?</string>
+    <string name="movie_name">Nhập tên của bộ phim ở đây.</string>
+
+    <string name="open" />
+    <string name="close" />
+
+
+</resources>

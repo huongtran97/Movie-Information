@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">FinalProject</string>
+    <string name="app_name" translatable="false">FinalProject</string>
+    <string name="name" translatable="false">tabian.com.sharedpreferences.name</string>
+    <string name="password" translatable="false">tabian.com.sharedpreferences.password</string>
+
+
+<!--Login page-->
+    <string name="content">Who are you?</string>
+    <string name="user">Name:</string>
+    <string name="user_type">What is your name?</string>
+    <string name="user_password">Password:</string>
+    <string name="user_password_type">Type your password</string>
+    <string name="login">LOGIN</string>
+
+<!--Find movie page-->
+    <string name="welcome">Welcome back to FindMovie !!!</string>
+    <string name="content_findmovie_page">What movie are you looking for?</string>
+    <string name="movie_name">Type name of the movie here</string>
+    <string name="open" />
+    <string name="close" />
+
+
 </resources>
