@@ -25,36 +25,36 @@
             tools:context=".FindMovie">
 
 
-    <TextView
-        android:id="@+id/nameLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="casual"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textColor="#F8E8B7"
-        android:textSize="16sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/nameLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="casual"
+                android:text="Hello "
+                android:textAlignment="center"
+                android:textColor="#AF837F"
+                android:textSize="16sp"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:fontFamily="casual"
-        android:text="@string/content_findmovie_page"
-        android:textColor="#6E911C"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameLogin" />
+            <TextView
+                android:id="@+id/search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:fontFamily="casual"
+                android:text="@string/content_findmovie_page"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameLogin" />
 
     <ImageButton
         android:id="@+id/searchBtn"
@@ -79,26 +79,26 @@
                 android:hint="@string/movie_name"
                 android:inputType="textPersonName"
                 android:textAlignment="textStart"
-                android:textColor="#F8E8B7"
-                android:textColorHint="#61EDDFB5"
+                android:textColor="#6A2F2A"
+                android:textColorHint="#AF837F"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.361"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/search" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="casual"
-        android:text="@string/welcome"
-        android:textColor="#F8E8B7"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameLogin" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="casual"
+                android:text="@string/welcome"
+                android:textColor="#6A2F2A"
+                android:textStyle="bold|italic"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameLogin" />
 
             <TextView
                 android:id="@+id/movie_Name"
@@ -108,7 +108,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="Movie name"
                 android:textAlignment="center"
-                android:textColor="#F8E8B7"
+                android:textColor="#6A2F2A"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:visibility="invisible"
@@ -126,7 +126,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="Actors \n"
                 android:textAlignment="viewStart"
-                android:textColor="#F8E8B7"
+                android:textColor="#6A2F2A"
                 android:textSize="16sp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -143,7 +143,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="Year"
                 android:textAlignment="viewStart"
-                android:textColor="#F8E8B7"
+                android:textColor="#6A2F2A"
                 android:textSize="16sp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -160,7 +160,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="Runtime"
                 android:textAlignment="viewStart"
-                android:textColor="#F8E8B7"
+                android:textColor="#6A2F2A"
                 android:textSize="16sp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +188,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="Plot \n \n \n \n \n"
                 android:textAlignment="viewStart"
-                android:textColor="#F8E8B7"
+                android:textColor="#6A2F2A"
                 android:textSize="16sp"
                 android:textStyle="italic"
                 android:visibility="invisible"
@@ -207,7 +207,7 @@
                 android:fontFamily="sans-serif-condensed"
                 android:text="Value"
                 android:textAlignment="viewStart"
-                android:textColor="#F8E8B7"
+                android:textColor="#6A2F2A"
                 android:textSize="16sp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -224,7 +224,7 @@
                 app:layout_constraintHorizontal_bias="0.795"
                 app:layout_constraintStart_toEndOf="@+id/movie_Image"
                 app:layout_constraintTop_toBottomOf="@+id/movie_Name"
-                app:srcCompat="@drawable/save"
+                app:srcCompat="@drawable/icon_save"
                 android:visibility="invisible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -234,7 +234,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#516D83"
+            android:background="#E88D8D"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/popout_header"
 

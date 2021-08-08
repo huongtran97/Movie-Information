@@ -1,6 +1,7 @@
 package algonquin.cst2335.finalproject;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -8,15 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-
+import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class FavoriteMovieFragment extends Fragment {
     MovieSQLite dataMovieFavorite;
@@ -26,7 +29,13 @@ public class FavoriteMovieFragment extends Fragment {
     SQLiteDatabase db;
     ImageButton deleteBtn;
 
-
+    /**
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -35,10 +44,8 @@ public class FavoriteMovieFragment extends Fragment {
         movieFavoriteList = new ArrayList<>();
         dataMovieFavorite = new MovieSQLite(getContext());
         movieFavoriteList.addAll(dataMovieFavorite.getAllFavoriteMovie());
-        recyclerView = movie_saved_layout.findViewById(R.id.rec);
         movieAdapter = new MovieAdapter(getContext(), movieFavoriteList);
-        recyclerView.setAdapter(movieAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        recyclerView = movie_saved_layout.findViewById(R.id.rec);
 
         db = dataMovieFavorite.getWritableDatabase();
         db.rawQuery("SELECT * FROM " + MovieSQLite.TABLE_NAME + ";",null );
@@ -60,12 +67,19 @@ public class FavoriteMovieFragment extends Fragment {
             String actorsOfMovie = results.getString(actorsCOL);
             String posterOfMovie = results.getString(posterCOL);
             String ratingOfMovie = results.getString(ratingCOL);
-            movieFavoriteList.add(new MovieDetails(id, nameOfMovie, yearOfMovie, actorsOfMovie,posterOfMovie, ratingOfMovie , plotOfMovie));
+            movieFavoriteList.add(new MovieDetails(id,nameOfMovie,yearOfMovie, actorsOfMovie,posterOfMovie,ratingOfMovie ,plotOfMovie));
         }
+        recyclerView.setAdapter(movieAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 
         return movie_saved_layout;
     }
 
+    /**
+     *
+     * @param chosenMovie
+     * @param chosenPosition
+     */
     public void notifyMovieDeleted(MovieDetails chosenMovie, int chosenPosition) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -94,5 +108,122 @@ public class FavoriteMovieFragment extends Fragment {
                 })
                 .create()
                 .show();
+    }
+
+
+
+
+    public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder> {
+
+        private Context mContext;
+        private  List<MovieDetails> mData;
+
+        /**
+         *
+         * @param position
+         * @return
+         */
+        public int getItemViewType(int position) {
+            MovieDetails thisRow =  mData.get(position);
+            return thisRow.getId();
+        }
+
+        /**
+         *
+         * @param mContext
+         * @param mData
+         */
+        public MovieAdapter(Context mContext, List<MovieDetails> mData) {
+            this.mContext = mContext;
+            this.mData = mData;
+
+        }
+
+        /**
+         *
+         * @param parent
+         * @param viewType
+         * @return
+         */
+        @Override
+        public MovieAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View v;
+
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            v = inflater.inflate(R.layout.movie_list,parent, false);
+            return  new MovieAdapter.MyViewHolder(v);
+
+        }
+
+        /**
+         *
+         * @param holder
+         * @param position
+         */
+        @Override
+        public void onBindViewHolder(MovieAdapter.MyViewHolder holder, int position) {
+
+
+            holder.movie_Name.setText(mData.get(position).getMovieTitle());
+            holder.movie_Rating.setText(mData.get(position).getMovieRating());
+            holder.movie_Year.setText(mData.get(position).getYear());
+//            holder.movie_Actors.setText(mData.get(position).getMainActor());
+            holder.movie_Plot.setText(mData.get(position).getMainActor());
+            holder.itemView.setOnClickListener(click -> {
+                FavoriteMovie parentActivity = ( FavoriteMovie) getContext();
+                parentActivity.userCLickedItem(movieFavoriteList.get(position),position);
+            });
+//        Log.d("a", mData.get(position).getMovieTitle());
+
+            //Using glide to display the poster
+            Glide.with(mContext).load(mData.get(position).getPoster()).into(holder.movie_Poster);
+
+
+
+
+        }
+
+        /**
+         *
+         * @return
+         */
+        @Override
+        public int getItemCount() {
+            return mData.size();
+        }
+
+        public class MyViewHolder extends RecyclerView.ViewHolder {
+
+            List<MovieDetails> movieFavoriteList = new ArrayList<>();
+            TextView movie_Name;
+            TextView movie_Rating;
+            TextView movie_Year;
+            TextView movie_Actors;
+            TextView movie_Plot;
+            ImageView movie_Poster;
+
+
+
+
+            /**
+             *
+             * @param itemView
+             */
+            public MyViewHolder(View itemView) {
+                super(itemView);
+
+
+
+                movie_Name = itemView.findViewById(R.id.movie_recyclerview_name);
+                movie_Rating = itemView.findViewById(R.id.movie_recyclerview_rating);
+                movie_Year = itemView.findViewById(R.id.movie_recyclerview_year);
+//                movie_Actors = itemView.findViewById(R.id.movie_recyclerview_actors);
+                movie_Poster = itemView.findViewById(R.id.movie_recyclerview_poster);
+                movie_Plot = itemView.findViewById(R.id.movie_recyclerview_plot);
+            }
+
+        }
+
     }
 }

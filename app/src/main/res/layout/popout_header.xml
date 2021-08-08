@@ -8,10 +8,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#35363A"
+        android:background="#6A2F2A"
         android:fontFamily="casual"
         android:text="Movie Information Application"
-        android:textColor=" #6E911C"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold|italic" />
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:text="Author: Ngoc Que Huong Tran"
-        android:textColor="#F8E8B7"
+        android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:text="Student ID: 040952959"
-        android:textColor="#F8E8B7"
+        android:textColor="#FFFFFF"
         android:textStyle="bold|italic" />
 
     <TextView
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="casual"
         android:text="Version: 01"
-        android:textColor="#F8E8B7"
+        android:textColor="#FFFFFF"
         android:textStyle="bold|italic" />
 
 

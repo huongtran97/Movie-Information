@@ -90,7 +90,7 @@ public class MovieSQLite extends SQLiteOpenHelper {
     }
 
     public void dropTable(String tableName) {
-        String sql = "DROP TABLE " + tableName;
+        String sql = "DROP TABLE IF EXIST " + tableName;
         QueryData(sql);
     }
 

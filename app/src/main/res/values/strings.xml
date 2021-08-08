@@ -13,7 +13,7 @@
     <string name="login">LOGIN</string>
 
 <!--Find movie page-->
-    <string name="welcome">Welcome back to FindMovie !!!</string>
+    <string name="welcome">Welcome back to FindDlay !!!</string>
     <string name="content_findmovie_page">What movie are you looking for?</string>
     <string name="movie_name">Type name of the movie here</string>
     <string name="open" />

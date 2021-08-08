@@ -81,9 +81,6 @@ public class FindMovie extends AppCompatActivity {
     String poster="";
 //    List<MovieDetails> movieDetailsList;
     MovieSQLite dataMovieFavorite;
-
-
-
     /**
      *Item popup menu
      * @param item
@@ -93,26 +90,18 @@ public class FindMovie extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-
-
         switch (item.getItemId()) {
             case R.id.save:
 
                 Intent movieFavorite = new Intent(FindMovie.this, FavoriteMovie.class);
                 startActivity(movieFavorite);
-
-
-
                 break;
             case 1:
                 String movieName = item.getTitle().toString();
                 runSearchBtn(movieName);
-
         }
-
         return super.onOptionsItemSelected(item);
     }
-
     /**
      *create menu options
      * @param menu
@@ -178,7 +167,6 @@ public class FindMovie extends AppCompatActivity {
         } );
 
     }
-
        public Bitmap getImage(String movieTitle, String posters ) {
         Bitmap img = null;
            try{
@@ -209,7 +197,6 @@ public class FindMovie extends AppCompatActivity {
            return img;
        }
 
-
     /**
      *get json data anf display on screen by click
      * @param movieName
@@ -217,7 +204,6 @@ public class FindMovie extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void runSearchBtn(String movieName) {
-
 
         Executor newThread = Executors.newSingleThreadExecutor();
             newThread.execute(() -> {
@@ -322,7 +308,6 @@ public class FindMovie extends AppCompatActivity {
 
             });
             ib.setVisibility(View.VISIBLE);
-
 
         }
     }
