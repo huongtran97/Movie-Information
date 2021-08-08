@@ -4,9 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class MovieSQLite extends SQLiteOpenHelper {
@@ -53,9 +53,9 @@ public class MovieSQLite extends SQLiteOpenHelper {
     }
 
 
-     public List<MovieDetails> getAllFavoriteMovie() {
+     public Collection<? extends FavoriteMovieFragment.MovieDetails> getAllFavoriteMovie() {
 
-         List<MovieDetails> list = new ArrayList();
+         List<FavoriteMovieFragment.MovieDetails> list = new ArrayList();
 
          String sql = "SELECT * FROM " + TABLE_NAME;
 
@@ -69,7 +69,7 @@ public class MovieSQLite extends SQLiteOpenHelper {
              String mainActor = data.getString(4);
              String moviePlot = data.getString(5);
              String poster = data.getString(6);
-             list.add(new MovieDetails(id,movieTitle,movieRating,year,mainActor,moviePlot,poster));
+             list.add(new FavoriteMovieFragment.MovieDetails(id,movieTitle,movieRating,year,mainActor,moviePlot,poster));
          }
 
         return list;

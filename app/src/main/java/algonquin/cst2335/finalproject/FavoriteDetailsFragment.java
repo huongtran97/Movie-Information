@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentManager;
 
 public class FavoriteDetailsFragment extends Fragment {
 
-    MovieDetails chosenMovie;
+    FavoriteMovieFragment.MovieDetails chosenMovie;
     int chosenPosition;
 
     /**
@@ -63,13 +63,9 @@ public class FavoriteDetailsFragment extends Fragment {
      * @param movie
      * @param position
      */
-    public FavoriteDetailsFragment(MovieDetails movie, int position) {
+    public FavoriteDetailsFragment(FavoriteMovieFragment.MovieDetails movie, int position) {
         chosenMovie = movie;
         chosenPosition = position;
     }
-
-
-
-
 
 }

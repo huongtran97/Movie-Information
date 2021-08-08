@@ -38,12 +38,12 @@ public class FavoriteMovie extends AppCompatActivity {
      * @param movie
      * @param position
      */
-    public void userCLickedItem(MovieDetails movie, int position) {
+    public void userCLickedItem(FavoriteMovieFragment.MovieDetails movie, int position) {
         FavoriteDetailsFragment favoriteDetailsFragment = new FavoriteDetailsFragment(movie, position);
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentMovie, favoriteDetailsFragment).commit();
     }
 
-    public void notifyMovieItemDeleted(MovieDetails chosenMovie, int chosenPosition) {
+    public void notifyMovieItemDeleted(FavoriteMovieFragment.MovieDetails chosenMovie, int chosenPosition) {
         movieFragment.notifyMovieDeleted(chosenMovie,chosenPosition);
     }
 

@@ -11,7 +11,7 @@
         android:id="@+id/movie_recyclerview_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="casual"
         android:lineSpacingExtra="8sp"
         android:text="Movie title"
@@ -51,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.21"
         app:srcCompat="@drawable/poster" />
 
     <TextView

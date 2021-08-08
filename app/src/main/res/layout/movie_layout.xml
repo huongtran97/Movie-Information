@@ -22,7 +22,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".FindMovie">
+            tools:context=".FindMovie"
+            tools:visibility="invisible">
 
 
             <TextView
@@ -56,18 +57,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameLogin" />
 
-    <ImageButton
-        android:id="@+id/searchBtn"
-        android:layout_width="32dp"
-        android:layout_height="38dp"
-        android:layout_marginEnd="36dp"
-        android:background="#00FAFAFA"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.155"
-        app:srcCompat="@android:drawable/ic_menu_search"
-        app:tint="#A17D7D" />
+            <ImageButton
+                android:id="@+id/searchBtn"
+                android:layout_width="32dp"
+                android:layout_height="38dp"
+                android:layout_marginEnd="36dp"
+                android:background="#00FAFAFA"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.155"
+                app:srcCompat="@android:drawable/ic_menu_search"
+                app:tint="#A17D7D" />
 
             <EditText
                 android:id="@+id/movie_search"
@@ -217,15 +218,15 @@
 
             <ImageButton
                 android:id="@+id/saveBtn"
-                android:layout_width="33dp"
-                android:layout_height="35dp"
+                android:layout_width="31dp"
+                android:layout_height="25dp"
                 android:layout_marginTop="24dp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.795"
+                app:layout_constraintHorizontal_bias="0.436"
                 app:layout_constraintStart_toEndOf="@+id/movie_Image"
                 app:layout_constraintTop_toBottomOf="@+id/movie_Name"
-                app:srcCompat="@drawable/icon_save"
-                android:visibility="invisible" />
+                app:srcCompat="@drawable/love" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -234,7 +235,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="#E88D8D"
+            android:background="@color/purple_500"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/popout_header"
 
