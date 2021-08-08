@@ -10,85 +10,83 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Map;
+import java.util.Set;
+
 public class MovieLogin extends AppCompatActivity {
-    /**
-     *
-     */
 
-        private static final String TAG = "MovieLogin";
-
-        private SharedPreferences mPreferences;
-        private SharedPreferences.Editor mEditor;
-
-        private EditText mName, mPassword;
-        private Button btnLogin;
+    private static final String TAG = "MovieLogin";
+    private SharedPreferences mPreferences;
+    private SharedPreferences.Editor mEditor;
+    private EditText mName, mPassword;
+    private Button btnLogin;
 
     /**
      *
      * @param savedInstanceState
      */
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.movie_login);
-            mName = (EditText) findViewById(R.id.name);
-            mPassword = (EditText) findViewById(R.id.inputPass);
-            btnLogin = (Button) findViewById(R.id.loginBtn);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.movie_login);
+        mName = (EditText) findViewById(R.id.name);
+        mPassword = (EditText) findViewById(R.id.inputPass);
+        btnLogin = (Button) findViewById(R.id.loginBtn);
 
-            mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            mEditor = mPreferences.edit();
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mPreferences.edit();
 
-            checkSharedPreferences();
-            /**
-             *
-             */
-            btnLogin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String nameUser = mName.getText().toString();
-                    String passWord = mPassword.getText().toString();
+        checkSharedPreferences();
 
-                    if (nameUser.equals("") || passWord.equals("")) {
-                        if (nameUser.equals("")) {
-                            Toast.makeText(MovieLogin.this, "How can I call you?",
-                                    Toast.LENGTH_LONG).show();
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String nameUser = mName.getText().toString();
+                String passWord = mPassword.getText().toString();
 
-                        }
-                        if (passWord.equals("")) {
-                            Toast.makeText(MovieLogin.this, "What is your password?",
-                                    Toast.LENGTH_LONG).show();
-
-                        }
+                if (nameUser.equals("") || passWord.equals("")) {
+                    if (nameUser.equals("")) {
+                        Toast.makeText(MovieLogin.this, "How can I call you?",
+                                Toast.LENGTH_LONG).show();
 
                     }
-                    if(CheckPassword(passWord)) {
-                        AlertDialog accept = new AlertDialog.Builder(MovieLogin.this)
-                                .setTitle("Yooo!!!!!")
-                                .setMessage("Good movies are waiting for you, let's enjoy them!!")
-                                .setView(new ProgressBar(MovieLogin.this))
-                                .show();
+                    else if (passWord.equals("")) {
+                        Toast.makeText(MovieLogin.this, "What is your password?",
+                                Toast.LENGTH_LONG).show();
 
-                        //save the name
-                        String name = mName.getText().toString();
-                        mEditor.putString(getString(R.string.name), name);
-                        mEditor.commit();
-
-                        //save the password
-                        String password = mPassword.getText().toString();
-                        mEditor.putString(getString(R.string.password), password);
-                        mEditor.commit();
-
-                        Intent i = new Intent(getApplicationContext(), FindMovie.class);
-                        startActivity(i);
                     }
+
+                } else if(CheckPassword(passWord)) {
+                    AlertDialog accept = new AlertDialog.Builder(MovieLogin.this)
+                            .setTitle("Yooo!!!!!")
+                            .setMessage("Good movies are waiting for you, let's enjoy them!!")
+                            .setView(new ProgressBar(MovieLogin.this))
+                            .show();
+
+                    //save the name
+                    String name = mName.getText().toString();
+                    mEditor.putString(getString(R.string.name), name);
+                    mEditor.commit();
+
+                    //save the password
+                    String password = mPassword.getText().toString();
+                    mEditor.putString(getString(R.string.password), password);
+                    mEditor.commit();
+
+                    Intent i = new Intent(getApplicationContext(), FindMovie.class);
+                    startActivity(i);
+
                 }
-            });
+
+            }
+        });
 
 
-        }
+    }
 
     /**
      *
@@ -163,4 +161,9 @@ public class MovieLogin extends AppCompatActivity {
         mPassword.setText(password);
     }
 }
+
+
+
+
+
 

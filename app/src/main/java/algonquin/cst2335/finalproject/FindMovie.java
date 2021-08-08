@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -28,6 +32,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.preference.PreferenceManager;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -38,6 +45,7 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -47,18 +55,34 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class FindMovie extends AppCompatActivity {
+    private static  final String SHARED_PREF_NAME = "mypref";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_PASS = "password";
+    SharedPreferences sharedPreferences;
+
     String stringURL;
     Bitmap image = null;
-    List<MovieDetails> movieDetailsList;
     TextView name;
     String movieName;
     String nameLogin;
+    String movie_title="";
+    String value="";
+    String year_movie="";
+    String actors="";
+    String runtime_movie="";
+    String plot_movie="";
+    String poster="";
+//    List<MovieDetails> movieDetailsList;
+    MovieSQLite dataMovieFavorite;
+
+
 
     /**
      *Item popup menu
@@ -69,17 +93,13 @@ public class FindMovie extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        TextView movie = findViewById(R.id.movie_Name);
-        TextView rating = findViewById(R.id.movie_ValueRating);
-        TextView actor = findViewById(R.id.movie_Actor);
-        TextView yr = findViewById(R.id.movie_Year);
-        TextView rt = findViewById(R.id.movie_Runtime);
-        TextView pl = findViewById(R.id.movie_Plot);
-        ImageView im = findViewById(R.id.movie_Image);
 
 
         switch (item.getItemId()) {
             case R.id.save:
+
+                Intent movieFavorite = new Intent(FindMovie.this, FavoriteMovie.class);
+                startActivity(movieFavorite);
 
 
 
@@ -115,6 +135,9 @@ public class FindMovie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_layout);
 
+        dataMovieFavorite = new MovieSQLite(getApplicationContext());
+        dataMovieFavorite.createTable();
+
         name = findViewById(R.id.nameLogin);
         EditText movieType = findViewById(R.id.movie_search);
         ImageButton searchMovieBtn = findViewById(R.id.searchBtn);
@@ -126,6 +149,8 @@ public class FindMovie extends AppCompatActivity {
         //Insert data type from login page to find movie page
         String nameLogin = mPreferences.getString(getString(R.string.name), "");
         name.setText("Hello " + nameLogin);
+
+
 
         Toolbar myToolbar = findViewById(R.id.movie_toolbar);
         setSupportActionBar(myToolbar);
@@ -153,6 +178,36 @@ public class FindMovie extends AppCompatActivity {
         } );
 
     }
+
+       public Bitmap getImage(String movieTitle, String posters ) {
+        Bitmap img = null;
+           try{
+               Log.d("abc", posters);
+                File file = new File(getFilesDir(),posters);
+                    if(file.exists()){
+                        img = BitmapFactory.decodeFile(getFilesDir() + posters);
+                    } else {
+                        URL imgUrl = new URL(posters );
+                        HttpURLConnection connection = (HttpURLConnection) imgUrl.openConnection();
+                        connection.connect();
+                        int responseCode = connection.getResponseCode();
+
+                        if (responseCode == 200) {
+                            img = BitmapFactory.decodeStream(connection.getInputStream());
+                            String filename = movieTitle + posters.substring(posters.length()-4);
+                            img.compress(Bitmap.CompressFormat.JPEG,100, openFileOutput(filename, Activity.MODE_PRIVATE));
+
+                        }
+                    }
+           } catch (FileNotFoundException e) {
+               e.printStackTrace();
+           } catch (MalformedURLException e) {
+               e.printStackTrace();
+           } catch (IOException ioException) {
+               ioException.printStackTrace();
+           }
+           return img;
+       }
 
 
     /**
@@ -184,32 +239,33 @@ public class FindMovie extends AppCompatActivity {
                     JSONObject theDocument = new JSONObject(text);
                     JSONArray ratingArray = theDocument.getJSONArray("Ratings");
                     JSONObject position0 = ratingArray.getJSONObject(0);
-                    String value = position0.getString("Value");
-                    String movie_title = theDocument.getString("Title");
-                    String year_movie = theDocument.getString("Year");
-                    String runtime_movie = theDocument.getString("Runtime");
-                    String actors = theDocument.getString("Actors");
-                    String plot_movie = theDocument.getString("Plot");
-                    String poster = theDocument.getString("Poster");
+                     value = position0.getString("Value");
+                     movie_title = theDocument.getString("Title");
+                     year_movie = theDocument.getString("Year");
+                     runtime_movie = theDocument.getString("Runtime");
+                     actors = theDocument.getString("Actors");
+                     plot_movie = theDocument.getString("Plot");
+                     poster = theDocument.getString("Poster");
 
-                    File file = new File(getFilesDir(),poster);
-                    if(file.exists()){
-                        image = BitmapFactory.decodeFile(getFilesDir() + poster);
-                    } else {
-                        URL imgUrl = new URL(poster );
-                        HttpURLConnection connection = (HttpURLConnection) imgUrl.openConnection();
-                        connection.connect();
-                        int responseCode = connection.getResponseCode();
+//                    File file = new File(getFilesDir(),poster);
+//                    if(file.exists()){
+//                        image = BitmapFactory.decodeFile(getFilesDir() + poster);
+//                    } else {
+//                        URL imgUrl = new URL(poster );
+//                        HttpURLConnection connection = (HttpURLConnection) imgUrl.openConnection();
+//                        connection.connect();
+//                        int responseCode = connection.getResponseCode();
+//
+//
+//                        if (responseCode == 200) {
+//                            image = BitmapFactory.decodeStream(connection.getInputStream());
+//                            String filename = movie_title + poster.substring(poster.length()-4);
+//                            image.compress(Bitmap.CompressFormat.JPEG,100, openFileOutput(filename, Activity.MODE_PRIVATE));
+//
+//                        }
+//                    }
 
-
-                        if (responseCode == 200) {
-                            image = BitmapFactory.decodeStream(connection.getInputStream());
-                            String filename = movie_title + poster.substring(poster.length()-4);
-                            image.compress(Bitmap.CompressFormat.JPEG,100, openFileOutput(filename, Activity.MODE_PRIVATE));
-
-                        }
-                    }
-
+                    image = getImage(movie_title, poster);
                     runOnUiThread(() -> {
 
 
@@ -252,6 +308,22 @@ public class FindMovie extends AppCompatActivity {
                 Toast.makeText(FindMovie.this, nameLogin + ", you still have not told me the name of the movie!" ,
                         Toast.LENGTH_LONG).show();
             }
+
+            ImageButton ib = findViewById(R.id.saveBtn);
+
+            ib.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    dataMovieFavorite.insertMovie(movie_title, value, year_movie, actors, plot_movie, poster);
+//                    Log.d("a", dataMovieFavorite.getAllFavoriteMovie().size() + " ");
+                    Toast.makeText(FindMovie.this, " Your saved it!" , Toast.LENGTH_SHORT).show();
+                }
+
+            });
+            ib.setVisibility(View.VISIBLE);
+
+
         }
     }
 

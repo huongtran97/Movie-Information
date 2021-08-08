@@ -1,6 +1,7 @@
 package algonquin.cst2335.finalproject;
 
 public class MovieDetails{
+    int id;
     String movieTitle;
     String year;
     String mainActor;
@@ -9,6 +10,20 @@ public class MovieDetails{
     String moviePlot;
     String runtime;
 
+
+
+
+    public MovieDetails(int id, String movieTitle, String year, String mainActor, String poster, String movieRating, String moviePlot) {
+        this.id = id;
+        this.movieTitle = movieTitle;
+        this.year = year;
+        this.mainActor = mainActor;
+        this.poster = poster;
+        this.movieRating = movieRating;
+        this.moviePlot = moviePlot;
+    }
+    public void setId(int l){ id = l;}
+    public int getId(){ return id;}
 
 
     public MovieDetails(String s) {

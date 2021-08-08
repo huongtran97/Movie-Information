@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".MovieLogin"></activity>
         <activity android:name=".FindMovie"></activity>
+        <activity android:name=".FavoriteMovie"></activity>
+        <activity android:name=".ItemMovieDetails"></activity>
     </application>
 
 </manifest>
