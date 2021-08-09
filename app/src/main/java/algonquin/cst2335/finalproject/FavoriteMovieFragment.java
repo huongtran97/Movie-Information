@@ -1,41 +1,33 @@
 package algonquin.cst2335.finalproject;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.AdapterView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
-import java.util.List;
 
 
+/**
+ * @author Ngoc Que Huong Tran
+ * @version 1.0
+ */
 public class FavoriteMovieFragment extends Fragment  {
     MovieSQLite dataMovieFavorite;
     ArrayList<MovieDetails> movieFavoriteList;
     RecyclerView recyclerView;
     MovieAdapter movieAdapter;
     SQLiteDatabase db;
-    ImageButton deleteBtn;
-
 
     /**
-     *
+     * Write data from SQLite to RecyclerView when save button is pressed
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -48,7 +40,6 @@ public class FavoriteMovieFragment extends Fragment  {
 
         movieFavoriteList = new ArrayList<>();
         dataMovieFavorite = new MovieSQLite(getContext());
-//        movieFavoriteList =dataMovieFavorite.getAllFavoriteMovie();
 
         recyclerView = movie_saved_layout.findViewById(R.id.rec);
 
@@ -78,8 +69,6 @@ public class FavoriteMovieFragment extends Fragment  {
         movieAdapter = new MovieAdapter(getContext(), movieFavoriteList);
         recyclerView.setAdapter(movieAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-
-
 
         return movie_saved_layout;
     }

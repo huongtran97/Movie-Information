@@ -1,5 +1,10 @@
 package algonquin.cst2335.finalproject;
 
+/**
+ * This class is used to create a model structure for movie information
+ * @author Ngoc Que Huong Tran
+ * @version 1.0
+ */
 public class MovieDetails {
     int id;
     String movieTitle;

@@ -1,25 +1,22 @@
 package algonquin.cst2335.finalproject;
 
-import android.content.Intent;
-import android.os.Bundle;
 
+import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * @author Ngoc Que Huong Tran
+ * @version 1.0
+ */
 public class FavoriteMovie extends AppCompatActivity {
 
-        FavoriteMovieFragment movieFragment;
+ //       FavoriteMovieFragment movieFragment;
         MovieSQLite db;
 
     /**
-     *
+     * Pass data from SQLite to fragment
      * @param savedInstanceState
      */
     @Override
@@ -34,13 +31,10 @@ public class FavoriteMovie extends AppCompatActivity {
         FragmentTransaction tx = fMgr.beginTransaction();
         tx.add(R.id.fragmentMovie, movieFragment);
         tx.commit();
-
-
-
     }
 
     /**
-     *
+     * Initialize the userClickedItem() method for clicking an item in the RecyclerView list
      * @param movie
      * @param position
      */
@@ -48,12 +42,6 @@ public class FavoriteMovie extends AppCompatActivity {
         FavoriteDetailsFragment favoriteDetailsFragment = new FavoriteDetailsFragment(movie);
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentMovie, favoriteDetailsFragment).commit();
     }
-//
-//    public void notifyMovieItemDeleted(MovieDetails chosenMovie, int chosenPosition) {
-//        movieFragment.notifyMovieDeleted(chosenMovie,chosenPosition);
-//    }
-
-
 
 }
 

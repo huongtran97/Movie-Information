@@ -21,18 +21,18 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-
+/**
+ * @author Ngoc Que Huong Tran
+ * @version 1.0
+ */
 public class FavoriteDetailsFragment extends Fragment {
     MovieSQLite db;
     MovieDetails chosenMovie;
-    ArrayList<MovieDetails> movieFavoriteList;
     RecyclerView listMovie;
 
-
-
-
     /**
-     *
+     * Writes data retrieved from the RecyclerView database of the FavoriteMovie class to FragmentDetails.
+     * Assign activity when close button and delete button are pressed
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -76,30 +76,19 @@ public class FavoriteDetailsFragment extends Fragment {
                            db.deleteItem(chosenMovie.getMovieTitle());
                             Intent intent = new Intent(getContext(),FavoriteMovie.class);
                             startActivity(intent);
-
                         }
-
-
                     }))
                     .create()
                     .show();
-
         });
         return details_movie;
     }
 
-
     /**
-     *
+     * Initialize chosenMovie method to get movie name from MovieDetails model
      * @param movie
-
      */
-//    public FavoriteDetailsFragment(MovieDetails movie, int position) {
-//        chosenMovie = movie;
-//        chosenPosition = position;
-//    }
     public FavoriteDetailsFragment(MovieDetails movie) {
         chosenMovie = movie;
-
     }
 }

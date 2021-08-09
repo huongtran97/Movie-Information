@@ -61,12 +61,16 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
+/**
+ * @author Ngoc Que Huong Tran
+ * @version 1.0
+ */
 public class FindMovie extends AppCompatActivity {
     private static  final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_NAME = "name";
     private static final String KEY_PASS = "password";
     SharedPreferences sharedPreferences;
-
+    MovieSQLite dataMovieFavorite;
     String stringURL;
     Bitmap image = null;
     TextView name;
@@ -79,10 +83,9 @@ public class FindMovie extends AppCompatActivity {
     String runtime_movie="";
     String plot_movie="";
     String poster="";
-//    List<MovieDetails> movieDetailsList;
-    MovieSQLite dataMovieFavorite;
+
     /**
-     *Item popup menu
+     * Item popup menu, assign an activity to the menu by click
      * @param item
      * @return
      */
@@ -92,7 +95,6 @@ public class FindMovie extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.save:
-
                 Intent movieFavorite = new Intent(FindMovie.this, FavoriteMovie.class);
                 startActivity(movieFavorite);
                 break;
@@ -103,7 +105,7 @@ public class FindMovie extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     /**
-     *create menu options
+     * Create menu options
      * @param menu
      * @return
      */
@@ -115,7 +117,7 @@ public class FindMovie extends AppCompatActivity {
     }
 
     /**
-     *get data user by share preferences
+     * Get data user by share preferences
      * @param savedInstanceState
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -148,25 +150,29 @@ public class FindMovie extends AppCompatActivity {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, myToolbar, R.string.open, R.string.close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
         NavigationView navigationView = findViewById(R.id.popout_menu);
         navigationView.setNavigationItemSelectedListener((item) -> {
-
             onOptionsItemSelected(item);
             drawer.closeDrawer(GravityCompat.START);
-
             return false;
         });
 
 
         searchMovieBtn.setOnClickListener((click) -> {
-
             movieName = movieType.getText().toString();
             myToolbar.getMenu().add(1,1,10,movieName).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
             runSearchBtn(movieName);
-
         } );
 
     }
+
+    /**
+     * Method to get address parameter and display poster from JSON data using Bitmap when doing movie info search
+     * @param movieTitle
+     * @param posters
+     * @return
+     */
        public Bitmap getImage(String movieTitle, String posters ) {
         Bitmap img = null;
            try{
@@ -198,7 +204,7 @@ public class FindMovie extends AppCompatActivity {
        }
 
     /**
-     *get json data anf display on screen by click
+     * Get JSON data and display on screen by click
      * @param movieName
      */
 
@@ -209,7 +215,7 @@ public class FindMovie extends AppCompatActivity {
             newThread.execute(() -> {
 
                 try{
-
+                    //Connect to the server
                     stringURL = "http://www.omdbapi.com/?apikey=6c9862c2&rxml=&t="
                             + URLEncoder.encode(movieName, "UTF-8");
 
@@ -222,6 +228,7 @@ public class FindMovie extends AppCompatActivity {
                             .lines()
                             .collect(Collectors.joining("\n"));
 
+                    //Get JSON data from the server
                     JSONObject theDocument = new JSONObject(text);
                     JSONArray ratingArray = theDocument.getJSONArray("Ratings");
                     JSONObject position0 = ratingArray.getJSONObject(0);
@@ -233,27 +240,10 @@ public class FindMovie extends AppCompatActivity {
                      plot_movie = theDocument.getString("Plot");
                      poster = theDocument.getString("Poster");
 
-//                    File file = new File(getFilesDir(),poster);
-//                    if(file.exists()){
-//                        image = BitmapFactory.decodeFile(getFilesDir() + poster);
-//                    } else {
-//                        URL imgUrl = new URL(poster );
-//                        HttpURLConnection connection = (HttpURLConnection) imgUrl.openConnection();
-//                        connection.connect();
-//                        int responseCode = connection.getResponseCode();
-//
-//
-//                        if (responseCode == 200) {
-//                            image = BitmapFactory.decodeStream(connection.getInputStream());
-//                            String filename = movie_title + poster.substring(poster.length()-4);
-//                            image.compress(Bitmap.CompressFormat.JPEG,100, openFileOutput(filename, Activity.MODE_PRIVATE));
-//
-//                        }
-//                    }
-
                     image = getImage(movie_title, poster);
-                    runOnUiThread(() -> {
 
+                    //Display JSON data using runOnUiThread method
+                    runOnUiThread(() -> {
 
                         TextView  movie = findViewById(R.id.movie_Name);
                         movie.setText(movie_title);
@@ -290,13 +280,14 @@ public class FindMovie extends AppCompatActivity {
                 }
             });
 
+            // If the user presses the search button without entering the movie name, Toast() will display on the screen to remind
             if(movieName.equals("")){
                 Toast.makeText(FindMovie.this, nameLogin + ", you still have not told me the name of the movie!" ,
                         Toast.LENGTH_LONG).show();
             }
 
+            //When the user presses the save button, the JSON data is saved to SQLite and shows the movie in the favorites list, and Toast() to confirm that the user clicked
             ImageButton ib = findViewById(R.id.saveBtn);
-
             ib.setOnClickListener(new View.OnClickListener() {
 
                 @Override

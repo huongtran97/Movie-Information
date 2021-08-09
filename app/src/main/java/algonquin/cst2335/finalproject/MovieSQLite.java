@@ -8,7 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * @author Ngoc Que Huong Tran
+ * @version 1.0
+ */
 public class MovieSQLite extends SQLiteOpenHelper {
     private  Context mContext;
     public static final String name = " TheDatabase";
@@ -22,9 +25,6 @@ public class MovieSQLite extends SQLiteOpenHelper {
     public static final String COL_POSTER = "poster";
 
 
-
-
-
     public MovieSQLite(Context context) {
         super(context, name, null, version);
         this.mContext = context;
@@ -34,6 +34,9 @@ public class MovieSQLite extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Create Table Favorite
+     */
     public void createTable() {
           String movieSQL = ("CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + COL_MOVIE_NAME + " TEXT,"
@@ -78,32 +81,50 @@ public class MovieSQLite extends SQLiteOpenHelper {
 
     public void QueryData(String sql) {
         SQLiteDatabase database = getWritableDatabase();
-
         database.execSQL(sql);
     }
 
-
+    /**
+     * Initialize insertMovie method when save button is pressed
+     * @param movieTitle
+     * @param movieRating
+     * @param year
+     * @param mainActor
+     * @param moviePlot
+     * @param poster
+     */
     public void insertMovie(String movieTitle, String movieRating,String year ,String mainActor, String moviePlot, String poster ) {
         if(getMovie(movieTitle) == null) {
             String sql = "INSERT INTO  Favorite(movieTitle,movieRating,year,mainActor,moviePlot,poster) VALUES ('" + movieTitle + "','" + movieRating + "','" + year + "','" + mainActor + "','"+ moviePlot + "','" + poster +"')";
             QueryData(sql);
         }
 
-
-
     }
 
+    /**
+     * Drop table
+     * @param tableName
+     */
     public void dropTable(String tableName) {
         String sql = "DROP TABLE " + tableName;
         QueryData(sql);
 
     }
-    ///
+
+    /**
+     * Initialize deleteMovie method when delete button is pressed
+     * @param nameItem
+     */
     public void deleteItem(String nameItem) {
         String sql = "DELETE FROM Favorite WHERE " + COL_MOVIE_NAME + " ='" + nameItem+"'";
         QueryData(sql);
     }
 
+    /**
+     * Get movie data by movie name from Favorite table
+     * @param name
+     * @return
+     */
     public MovieDetails getMovie(String name){
         MovieDetails result = null;
         String sql = "SELECT * FROM Favorite WHERE " + COL_MOVIE_NAME + " ='" + name + "'";
@@ -122,11 +143,8 @@ public class MovieSQLite extends SQLiteOpenHelper {
         return result;
     }
 
-
-
     @Override
     public void onUpgrade(SQLiteDatabase movieDB, int i, int i1) {
-
 
     }
 }

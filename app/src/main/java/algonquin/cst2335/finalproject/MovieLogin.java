@@ -17,6 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * @author Ngoc Que Huong Tran
+ * @version 1.0
+ */
 public class MovieLogin extends AppCompatActivity {
 
     private static final String TAG = "MovieLogin";
@@ -26,7 +30,10 @@ public class MovieLogin extends AppCompatActivity {
     private Button btnLogin;
 
     /**
-     *
+     * Using SharePreferences to save user data when filling in username and password to log in to FindMovie.
+     * Use SharePreferences to save user data when entering a name and password to log in to FindMovie.
+     * Assign a click activity to check for passwords, alerts, and go to FindMovie.
+     * Toast() if the user does not complete the information or fill in the password requirements missing
      * @param savedInstanceState
      */
     @Override
@@ -84,12 +91,10 @@ public class MovieLogin extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     /**
-     *
+     * Initialize user password check if missing uppercase, lowercase letters, numbers and special characters
      * @param passWord
      * @return
      */
