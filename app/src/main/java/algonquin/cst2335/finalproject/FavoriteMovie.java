@@ -1,5 +1,6 @@
 package algonquin.cst2335.finalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import java.util.List;
 public class FavoriteMovie extends AppCompatActivity {
 
         FavoriteMovieFragment movieFragment;
+        MovieSQLite db;
 
     /**
      *
@@ -25,11 +27,15 @@ public class FavoriteMovie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_empty_layout);
 
+        db = new MovieSQLite(getApplicationContext());
+
         FavoriteMovieFragment movieFragment = new FavoriteMovieFragment();
         FragmentManager fMgr = getSupportFragmentManager();
         FragmentTransaction tx = fMgr.beginTransaction();
         tx.add(R.id.fragmentMovie, movieFragment);
         tx.commit();
+
+
 
     }
 
@@ -38,14 +44,14 @@ public class FavoriteMovie extends AppCompatActivity {
      * @param movie
      * @param position
      */
-    public void userCLickedItem(FavoriteMovieFragment.MovieDetails movie, int position) {
-        FavoriteDetailsFragment favoriteDetailsFragment = new FavoriteDetailsFragment(movie, position);
+    public void userCLickedItem(MovieDetails movie, int position) {
+        FavoriteDetailsFragment favoriteDetailsFragment = new FavoriteDetailsFragment(movie);
         getSupportFragmentManager().beginTransaction().add(R.id.fragmentMovie, favoriteDetailsFragment).commit();
     }
-
-    public void notifyMovieItemDeleted(FavoriteMovieFragment.MovieDetails chosenMovie, int chosenPosition) {
-        movieFragment.notifyMovieDeleted(chosenMovie,chosenPosition);
-    }
+//
+//    public void notifyMovieItemDeleted(MovieDetails chosenMovie, int chosenPosition) {
+//        movieFragment.notifyMovieDeleted(chosenMovie,chosenPosition);
+//    }
 
 
 

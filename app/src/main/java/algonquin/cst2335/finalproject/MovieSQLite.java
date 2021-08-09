@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+
 
 public class MovieSQLite extends SQLiteOpenHelper {
     private  Context mContext;
@@ -53,9 +53,9 @@ public class MovieSQLite extends SQLiteOpenHelper {
     }
 
 
-     public Collection<? extends FavoriteMovieFragment.MovieDetails> getAllFavoriteMovie() {
+     public ArrayList<MovieDetails> getAllFavoriteMovie() {
 
-         List<FavoriteMovieFragment.MovieDetails> list = new ArrayList();
+         ArrayList<MovieDetails> list = new ArrayList();
 
          String sql = "SELECT * FROM " + TABLE_NAME;
 
@@ -69,7 +69,7 @@ public class MovieSQLite extends SQLiteOpenHelper {
              String mainActor = data.getString(4);
              String moviePlot = data.getString(5);
              String poster = data.getString(6);
-             list.add(new FavoriteMovieFragment.MovieDetails(id,movieTitle,movieRating,year,mainActor,moviePlot,poster));
+             list.add(new MovieDetails(id,movieTitle,movieRating,year,mainActor,moviePlot,poster));
          }
 
         return list;
@@ -84,15 +84,44 @@ public class MovieSQLite extends SQLiteOpenHelper {
 
 
     public void insertMovie(String movieTitle, String movieRating,String year ,String mainActor, String moviePlot, String poster ) {
-        String sql = "INSERT INTO  Favorite(movieTitle,movieRating,year,mainActor,moviePlot,poster) VALUES ('" + movieTitle + "','" + movieRating + "','" + year + "','" + mainActor + "','"+ moviePlot + "','" + poster +"')";
-        QueryData(sql);
+        if(getMovie(movieTitle) == null) {
+            String sql = "INSERT INTO  Favorite(movieTitle,movieRating,year,mainActor,moviePlot,poster) VALUES ('" + movieTitle + "','" + movieRating + "','" + year + "','" + mainActor + "','"+ moviePlot + "','" + poster +"')";
+            QueryData(sql);
+        }
+
+
 
     }
 
     public void dropTable(String tableName) {
-        String sql = "DROP TABLE IF EXIST " + tableName;
+        String sql = "DROP TABLE " + tableName;
+        QueryData(sql);
+
+    }
+    ///
+    public void deleteItem(String nameItem) {
+        String sql = "DELETE FROM Favorite WHERE " + COL_MOVIE_NAME + " ='" + nameItem+"'";
         QueryData(sql);
     }
+
+    public MovieDetails getMovie(String name){
+        MovieDetails result = null;
+        String sql = "SELECT * FROM Favorite WHERE " + COL_MOVIE_NAME + " ='" + name + "'";
+        Cursor data =  GetData(sql);
+
+        while (data.moveToNext()) {
+            int id = data.getInt(0);
+            String movieTitle = data.getString(1);
+            String movieRating = data.getString(2);
+            String year = data.getString(3);
+            String mainActor = data.getString(4);
+            String moviePlot = data.getString(5);
+            String poster = data.getString(6);
+            result = new MovieDetails(id,movieTitle,movieRating,year,mainActor,moviePlot,poster);
+        }
+        return result;
+    }
+
 
 
     @Override
