@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="@color/purple_700"
         android:fontFamily="casual"
-        android:text="Movie Information Application"
+        android:text="@string/header_content"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold|italic" />
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:text="Author: Ngoc Que Huong Tran"
+        android:text="@string/popup_author"
         android:textColor="#FFFFFF"
         android:textStyle="bold" />
 
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:text="Student ID: 040952959"
+        android:text="@string/popup_ID"
         android:textColor="#FFFFFF"
         android:textStyle="bold|italic" />
 
@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:text="Version: 01"
+        android:text="@string/popup_version"
         android:textColor="#FFFFFF"
         android:textStyle="bold|italic" />
 

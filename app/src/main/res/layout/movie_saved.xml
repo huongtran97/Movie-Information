@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:background="#E88D8D"
         android:fontFamily="casual"
-        android:text="Favorite movie list"
+        android:text="@string/favorite_list_content"
         android:textAlignment="center"
         android:textColor="#974545"
         android:textSize="20sp"

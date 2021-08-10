@@ -20,8 +20,16 @@
     <string name="close" />
 
 <!--Popup item-->
-    <string name="content_head_popup">Favorites</string>
+    <string name="header_content">Movie Information Application</string>
+    <string name="popup_author">Author: Ngoc Que Huong Tran</string>
+    <string name="popup_ID">Student ID: 040952959</string>
+    <string name="popup_version">Version: 01</string>
 
+<!--Favorite list-->
+    <string name="favorite_list_content">Favorite movie list</string>
+
+<!--Movie details-->
+    <string name="movie_details">Movie details</string>
 
 
 </resources>

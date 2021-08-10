@@ -75,7 +75,7 @@
         android:layout_height="34dp"
         android:background="#E88D8D"
         android:fontFamily="casual"
-        android:text="Movie details"
+        android:text="@string/movie_details"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="20sp"

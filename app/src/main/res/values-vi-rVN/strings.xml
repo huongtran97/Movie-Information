@@ -19,8 +19,15 @@
     <string name="close" />
 
     <!--Popup item-->
-    <string name="content_head_popup">Yêu thích</string>
+    <string name="header_content">Ứng dụng Tìm Thông Tin Phim</string>
+    <string name="popup_author">Tác giả: Trần Ngoc Quế Hương</string>
+    <string name="popup_ID">Sinh viên ID: 040952959</string>
+    <string name="popup_version">Phiên bản: 01</string>
 
+    <!--Favorite list-->
+    <string name="favorite_list_content">Danh sách phim yêu thích</string>
 
+    <!--Movie details-->
+    <string name="movie_details">Thông tin phim</string>
 
 </resources>

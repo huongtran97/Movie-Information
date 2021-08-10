@@ -1,5 +1,6 @@
 package algonquin.cst2335.finalproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,15 +15,15 @@ import java.util.List;
  */
 public class MovieSQLite extends SQLiteOpenHelper {
     private  Context mContext;
-    public static final String name = " TheDatabase";
+    public static final String name =" TheDatabase";
     public static final int version = 1;
-    public static final String TABLE_NAME = "Favorite";
-    public static final String COL_MOVIE_NAME = "movieTitle";
-    public static final String COL_RATING= "movieRating";
-    public static final String COL_YEAR = "year";
-    public static final String COL_ACTORS = "mainActor";
-    public static final String COL_PLOT = "moviePlot";
-    public static final String COL_POSTER = "poster";
+    public static final String TABLE_NAME ="Favorite";
+    public static final String COL_MOVIE_NAME ="movieTitle";
+    public static final String COL_RATING="movieRating";
+    public static final String COL_YEAR ="year";
+    public static final String COL_ACTORS ="mainActor";
+    public static final String COL_PLOT ="moviePlot";
+    public static final String COL_POSTER ="poster";
 
 
     public MovieSQLite(Context context) {
@@ -95,10 +96,9 @@ public class MovieSQLite extends SQLiteOpenHelper {
      */
     public void insertMovie(String movieTitle, String movieRating,String year ,String mainActor, String moviePlot, String poster ) {
         if(getMovie(movieTitle) == null) {
-            String sql = "INSERT INTO  Favorite(movieTitle,movieRating,year,mainActor,moviePlot,poster) VALUES ('" + movieTitle + "','" + movieRating + "','" + year + "','" + mainActor + "','"+ moviePlot + "','" + poster +"')";
+           String sql = "INSERT INTO  Favorite(movieTitle,movieRating,year,mainActor,moviePlot,poster) VALUES ('" + movieTitle + "','" + movieRating + "','" + year + "','" + mainActor + "','" + moviePlot + "','" + poster + "')";
             QueryData(sql);
         }
-
     }
 
     /**

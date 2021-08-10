@@ -72,16 +72,20 @@ public class FavoriteDetailsFragment extends Fragment {
                     .setPositiveButton("Delete", (new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Log.d("name", "a");
-                           db.deleteItem(chosenMovie.getMovieTitle());
+                            db.deleteItem(chosenMovie.getMovieTitle());
+                            Snackbar.make(deleteClicked, "You deleted it!", Snackbar.LENGTH_LONG).show();
                             Intent intent = new Intent(getContext(),FavoriteMovie.class);
                             startActivity(intent);
                         }
                     }))
                     .create()
                     .show();
+
+
         });
+
         return details_movie;
+
     }
 
     /**

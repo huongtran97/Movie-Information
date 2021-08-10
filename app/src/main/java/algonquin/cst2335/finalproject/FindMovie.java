@@ -1,6 +1,7 @@
 package algonquin.cst2335.finalproject;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -75,7 +76,6 @@ public class FindMovie extends AppCompatActivity {
     Bitmap image = null;
     TextView name;
     String movieName;
-    String nameLogin;
     String movie_title="";
     String value="";
     String year_movie="";
@@ -93,14 +93,38 @@ public class FindMovie extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        TextView  movieItem = findViewById(R.id.movie_Name);
+        TextView ratingItem = findViewById(R.id.movie_ValueRating);
+        TextView actorItem = findViewById(R.id.movie_Actor);
+        TextView yrItem = findViewById(R.id.movie_Year);
+        TextView rtItem = findViewById(R.id.movie_Runtime);
+        TextView plItem = findViewById(R.id.movie_Plot);
+        ImageView imItem = findViewById(R.id.movie_Image);
+        EditText movieTextField = findViewById(R.id.movie_search);
+        ImageButton saveBtnItem = findViewById(R.id.saveBtn);
+
         switch (item.getItemId()) {
             case R.id.save:
                 Intent movieFavorite = new Intent(FindMovie.this, FavoriteMovie.class);
                 startActivity(movieFavorite);
                 break;
-            case 1:
+            case R.id.clean:
+                movieItem.setVisibility(View.INVISIBLE);
+                ratingItem.setVisibility(View.INVISIBLE);
+                actorItem.setVisibility(View.INVISIBLE);
+                yrItem.setVisibility(View.INVISIBLE);
+                rtItem.setVisibility(View.INVISIBLE);
+                plItem.setVisibility(View.INVISIBLE);
+                imItem.setVisibility(View.INVISIBLE);
+                saveBtnItem.setVisibility(View.INVISIBLE);
+                movieTextField.setText("");
+                break;
+            case 5:
                 String movieName = item.getTitle().toString();
                 runSearchBtn(movieName);
+                break;
+
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -161,7 +185,7 @@ public class FindMovie extends AppCompatActivity {
 
         searchMovieBtn.setOnClickListener((click) -> {
             movieName = movieType.getText().toString();
-            myToolbar.getMenu().add(1,1,10,movieName).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
+            myToolbar.getMenu().add(1,5,10,movieName).setShowAsAction(MenuItem.SHOW_AS_ACTION_NEVER);
             runSearchBtn(movieName);
         } );
 
@@ -282,7 +306,7 @@ public class FindMovie extends AppCompatActivity {
 
             // If the user presses the search button without entering the movie name, Toast() will display on the screen to remind
             if(movieName.equals("")){
-                Toast.makeText(FindMovie.this, nameLogin + ", you still have not told me the name of the movie!" ,
+                Toast.makeText(FindMovie.this, "You still have not told me the name of the movie!" ,
                         Toast.LENGTH_LONG).show();
             }
 
@@ -293,10 +317,8 @@ public class FindMovie extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     dataMovieFavorite.insertMovie(movie_title, value, year_movie, actors, plot_movie, poster);
-//                    Log.d("a", dataMovieFavorite.getAllFavoriteMovie().size() + " ");
                     Toast.makeText(FindMovie.this, " Your saved it!" , Toast.LENGTH_SHORT).show();
                 }
-
             });
             ib.setVisibility(View.VISIBLE);
 
