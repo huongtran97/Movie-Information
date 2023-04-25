@@ -69,8 +69,8 @@ public class MovieLogin extends AppCompatActivity {
 
                 } else if(CheckPassword(passWord)) {
                     AlertDialog accept = new AlertDialog.Builder(MovieLogin.this)
-                            .setTitle("Yooo!!!!!")
-                            .setMessage("Good movies are waiting for you, let's enjoy them!!")
+                            .setTitle("Successful,")
+                            .setMessage("Let's get some more movie information :)")
                             .setView(new ProgressBar(MovieLogin.this))
                             .show();
 

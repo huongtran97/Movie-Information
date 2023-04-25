@@ -4,16 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="223dp"
-        app:srcCompat="@drawable/find_movie" />
 
     <TextView
         android:id="@+id/contentSignUp"
@@ -24,7 +18,7 @@
         android:text="@string/content"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -33,7 +27,7 @@
         android:layout_height="35dp"
         android:fontFamily="casual"
         android:text="@string/user"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
@@ -42,8 +36,9 @@
         android:layout_height="63dp"
         android:fontFamily="casual"
         android:hint="@string/user_type"
+        app:backgroundTint="@color/purple_500"
         android:inputType="textEmailAddress"
-        android:textColor="#6A2F2A"
+        android:textColor="@color/black"
         android:textColorHint="#AF837F"
         android:textSize="16sp" />
 
@@ -52,19 +47,21 @@
         android:layout_height="46dp"
         android:fontFamily="casual"
         android:text="@string/user_password"
-        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/purple_500"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
         android:id="@+id/inputPass"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="63dp"
         android:fontFamily="casual"
         android:hint="@string/user_password_type"
         android:inputType="textPassword"
-        android:textColor="#6A2F2A"
+        android:textColor="@color/black"
         android:textColorHint="#AF837F"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:backgroundTint="@color/purple_500" />
 
     <Button
         android:id="@+id/loginBtn"

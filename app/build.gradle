@@ -8,7 +8,7 @@ configurations.all {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
 
@@ -16,7 +16,7 @@ android {
 
         applicationId "algonquin.cst2335.finalproject"
         minSdkVersion 22
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 

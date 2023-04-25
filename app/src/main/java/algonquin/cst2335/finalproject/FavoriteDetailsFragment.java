@@ -1,5 +1,6 @@
 package algonquin.cst2335.finalproject;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -38,6 +39,7 @@ public class FavoriteDetailsFragment extends Fragment {
      * @param savedInstanceState
      * @return
      */
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 

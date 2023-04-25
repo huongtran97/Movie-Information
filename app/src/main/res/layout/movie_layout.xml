@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_700"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/movie_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="34dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/movie_toolbar"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -28,207 +28,178 @@
 
             <TextView
                 android:id="@+id/nameLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="422dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="casual"
                 android:text="Hello "
                 android:textAlignment="center"
                 android:textColor="#AF837F"
-                android:textSize="16sp"
+                android:textSize="19sp"
                 android:textStyle="bold|italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:fontFamily="casual"
-                android:text="@string/content_findmovie_page"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameLogin" />
-
             <ImageButton
                 android:id="@+id/searchBtn"
-                android:layout_width="32dp"
-                android:layout_height="38dp"
-                android:layout_marginEnd="36dp"
+                android:layout_width="85dp"
+                android:layout_height="88dp"
                 android:background="#00FAFAFA"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/movie_search"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.178"
-                app:srcCompat="@android:drawable/ic_menu_search"
-                app:tint="#A17D7D" />
+                app:layout_constraintVertical_bias="0.145"
+                app:srcCompat="@drawable/search_icon"
+                app:tint="#000000" />
 
             <EditText
                 android:id="@+id/movie_search"
-                android:layout_width="305dp"
-                android:layout_height="49dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="357dp"
+                android:layout_height="51dp"
+                android:layout_marginTop="64dp"
                 android:ems="10"
                 android:fontFamily="casual"
                 android:hint="@string/movie_name"
                 android:inputType="textPersonName"
                 android:textAlignment="textStart"
-                android:textColor="#6A2F2A"
-                android:textColorHint="#AF837F"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="16sp"
+                app:backgroundTint="@color/purple_500"
+                app:layout_constraintBottom_toTopOf="@+id/movie_Name"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.361"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/search" />
+                app:layout_constraintTop_toTopOf="@+id/nameLogin"
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="casual"
-                android:text="@string/welcome"
-                android:textColor="#6A2F2A"
-                android:textSize="16sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameLogin" />
+
+                />
 
             <TextView
                 android:id="@+id/movie_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="168dp"
+                android:layout_marginTop="224dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Movie name"
                 android:textAlignment="center"
-                android:textColor="#6A2F2A"
+                android:textColor="#000000"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/movie_Actor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
+                android:layout_width="259dp"
+                android:layout_height="69dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Actors \n"
                 android:textAlignment="viewStart"
-                android:textColor="#6A2F2A"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/movie_Image"
                 app:layout_constraintTop_toBottomOf="@+id/movie_ValueRating" />
 
             <TextView
                 android:id="@+id/movie_Year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="4dp"
+                android:layout_width="262dp"
+                android:layout_height="42dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Year"
                 android:textAlignment="viewStart"
-                android:textColor="#6A2F2A"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/movie_Actor"
                 app:layout_constraintTop_toBottomOf="@+id/movie_Actor" />
 
             <TextView
                 android:id="@+id/movie_Runtime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="4dp"
+                android:layout_width="264dp"
+                android:layout_height="38dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Runtime"
                 android:textAlignment="viewStart"
-                android:textColor="#6A2F2A"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/movie_Actor"
                 app:layout_constraintTop_toBottomOf="@+id/movie_Year" />
 
             <ImageView
                 android:id="@+id/movie_Image"
                 android:layout_width="149dp"
                 android:layout_height="191dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="8dp"
                 android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.011"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/movie_Name"
                 app:srcCompat="@drawable/poster" />
 
             <TextView
-                android:id="@+id/movie_Plot"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="sans-serif-condensed"
-                android:text="Plot \n \n \n \n \n"
-                android:textAlignment="viewStart"
-                android:textColor="#6A2F2A"
-                android:textSize="18sp"
-                android:textStyle="italic"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movie_Runtime"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
                 android:id="@+id/movie_ValueRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_width="258dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Value"
                 android:textAlignment="viewStart"
-                android:textColor="#6A2F2A"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.008"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movie_Image" />
+                app:layout_constraintStart_toStartOf="@+id/movie_Year"
+                app:layout_constraintTop_toBottomOf="@+id/saveBtn" />
 
             <ImageButton
                 android:id="@+id/saveBtn"
                 android:layout_width="31dp"
                 android:layout_height="25dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="TODO"
                 android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.436"
-                app:layout_constraintStart_toEndOf="@+id/movie_Image"
+                app:layout_constraintStart_toStartOf="@+id/movie_Actor"
                 app:layout_constraintTop_toBottomOf="@+id/movie_Name"
                 app:srcCompat="@drawable/love" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="295dp"
+                android:layout_height="61dp"
+                android:text="Sreach movie"
+                android:textColor="#000000"
+                android:textSize="25sp"
+                app:layout_constraintBottom_toTopOf="@+id/movie_search"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.014"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameLogin"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/movie_Plot"
+                android:layout_width="400dp"
+                android:layout_height="142dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Plot \n \n \n \n \n"
+                android:textAlignment="viewStart"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@+id/movie_Runtime"
+                tools:layout_editor_absoluteX="10dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -241,6 +212,7 @@
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/popout_header"
 
-             />
+            />
     </androidx.drawerlayout.widget.DrawerLayout>
+
 </LinearLayout>

@@ -1,5 +1,6 @@
 package algonquin.cst2335.finalproject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +64,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MyViewHolder
      * @param position
      */
     @Override
-    public void onBindViewHolder(MovieAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(MovieAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.movie_Name.setText(mData.get(position).getMovieTitle());
         holder.movie_Rating.setText(mData.get(position).getMovieRating());

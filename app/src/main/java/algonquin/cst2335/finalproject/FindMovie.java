@@ -1,5 +1,6 @@
 package algonquin.cst2335.finalproject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
@@ -67,7 +68,6 @@ import java.util.stream.Collectors;
  * @version 1.0
  */
 public class FindMovie extends AppCompatActivity {
-    private static  final String SHARED_PREF_NAME = "mypref";
     private static final String KEY_NAME = "name";
     private static final String KEY_PASS = "password";
     SharedPreferences sharedPreferences;
@@ -89,6 +89,7 @@ public class FindMovie extends AppCompatActivity {
      * @param item
      * @return
      */
+    @SuppressLint("NonConstantResourceId")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -144,6 +145,7 @@ public class FindMovie extends AppCompatActivity {
      * Get data user by share preferences
      * @param savedInstanceState
      */
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,11 +161,11 @@ public class FindMovie extends AppCompatActivity {
 
         //SharedPreferences to get data type from login page
         SharedPreferences mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = mPreferences.edit();
+        @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = mPreferences.edit();
 
         //Insert data type from login page to find movie page
         String nameLogin = mPreferences.getString(getString(R.string.name), "");
-        name.setText("Hello " + nameLogin);
+        name.setText("Hi " + nameLogin);
 
 
 
@@ -217,21 +219,17 @@ public class FindMovie extends AppCompatActivity {
 
                         }
                     }
-           } catch (FileNotFoundException e) {
+           } catch (IOException e) {
                e.printStackTrace();
-           } catch (MalformedURLException e) {
-               e.printStackTrace();
-           } catch (IOException ioException) {
-               ioException.printStackTrace();
            }
            return img;
        }
 
     /**
      * Get JSON data and display on screen by click
-     * @param movieName
      */
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void runSearchBtn(String movieName) {
 
@@ -306,19 +304,15 @@ public class FindMovie extends AppCompatActivity {
 
             // If the user presses the search button without entering the movie name, Toast() will display on the screen to remind
             if(movieName.equals("")){
-                Toast.makeText(FindMovie.this, "You still have not told me the name of the movie!" ,
+                Toast.makeText(FindMovie.this, "Oops, something went wrong!" ,
                         Toast.LENGTH_LONG).show();
             }
 
             //When the user presses the save button, the JSON data is saved to SQLite and shows the movie in the favorites list, and Toast() to confirm that the user clicked
             ImageButton ib = findViewById(R.id.saveBtn);
-            ib.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    dataMovieFavorite.insertMovie(movie_title, value, year_movie, actors, plot_movie, poster);
-                    Toast.makeText(FindMovie.this, " Your saved it!" , Toast.LENGTH_SHORT).show();
-                }
+            ib.setOnClickListener(view -> {
+                dataMovieFavorite.insertMovie(movie_title, value, year_movie, actors, plot_movie, poster);
+                Toast.makeText(FindMovie.this, " Your saved it!" , Toast.LENGTH_SHORT).show();
             });
             ib.setVisibility(View.VISIBLE);
 
