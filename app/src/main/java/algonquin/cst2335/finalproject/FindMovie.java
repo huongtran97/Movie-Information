@@ -238,7 +238,7 @@ public class FindMovie extends AppCompatActivity {
 
                 try{
                     //Connect to the server
-                    stringURL = "http://www.omdbapi.com/?apikey=6c9862c2&rxml=&t="
+                    stringURL = "https://www.omdbapi.com/?apikey=6c9862c2&rxml=&t="
                             + URLEncoder.encode(movieName, "UTF-8");
 
                     URL url = new URL(stringURL);
